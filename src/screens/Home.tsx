@@ -29,6 +29,7 @@ import * as FileSystem from 'expo-file-system/legacy';
 import { Asset } from 'expo-asset';
 import Animated, { FadeInDown, FadeInRight } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
+import { openAppUrl, handleCall, handleWhatsApp } from '../utils/linking';
 
 const { width } = Dimensions.get('window');
 
@@ -130,26 +131,7 @@ export default function HomeScreen() {
     else setRefreshing(false);
   };
 
-  const openLink = async (url: string) => {
-    if (!url) return;
-    try {
-        const supported = await Linking.canOpenURL(url);
-        if (supported) {
-            await Linking.openURL(url);
-        } else {
-            Alert.alert("Error", "Don't know how to open this URL: " + url);
-        }
-    } catch (error) {
-        console.error("Link open error", error);
-    }
-  };
 
-  const handleCall = (number: string) => number && openLink(`tel:${number}`);
-  const handleWhatsApp = (number: string) => {
-      if (!number) return;
-      let formatted = number.startsWith('+') ? number : '+880' + number.replace(/^0+/, ''); 
-      openLink(`whatsapp://send?phone=${formatted}`);
-  };
 
   const executeDownload = async (noticeItem: any) => {
     try {

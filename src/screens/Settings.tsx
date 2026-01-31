@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
-import { Alert, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View, Image, Linking, ActivityIndicator, Modal } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View, Image, ActivityIndicator, Modal } from 'react-native';
+import { openAppUrl } from '../utils/linking';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors, Spacing, Layout } from '../../constants/theme';
 import { useAuth } from '../context/AuthContext';
@@ -291,22 +292,22 @@ export default function SettingsScreen() {
                 <View style={{ paddingHorizontal: 20, paddingBottom: 20 }}>
                      <View style={{ flexDirection: 'row', gap: 10, marginTop: 4 }}>
                         {developer.socials?.github && (
-                            <TouchableOpacity onPress={() => Linking.openURL(developer.socials.github)} style={{ padding: 8, backgroundColor: '#24292E', borderRadius: 20 }}>
+                            <TouchableOpacity onPress={() => openAppUrl(developer.socials.github)} style={{ padding: 8, backgroundColor: '#24292E', borderRadius: 20 }}>
                                 <Ionicons name="logo-github" size={16} color="#FFF" />
                             </TouchableOpacity>
                         )}
                         {developer.socials?.linkedin && (
-                            <TouchableOpacity onPress={() => Linking.openURL(developer.socials.linkedin)} style={{ padding: 8, backgroundColor: '#0077B5', borderRadius: 20 }}>
+                            <TouchableOpacity onPress={() => openAppUrl(developer.socials.linkedin)} style={{ padding: 8, backgroundColor: '#0077B5', borderRadius: 20 }}>
                                 <Ionicons name="logo-linkedin" size={16} color="#FFF" />
                             </TouchableOpacity>
                         )}
                         {developer.socials?.facebook && (
-                            <TouchableOpacity onPress={() => Linking.openURL(developer.socials.facebook)} style={{ padding: 8, backgroundColor: '#1877F2', borderRadius: 20 }}>
+                            <TouchableOpacity onPress={() => openAppUrl(developer.socials.facebook)} style={{ padding: 8, backgroundColor: '#1877F2', borderRadius: 20 }}>
                                 <Ionicons name="logo-facebook" size={16} color="#FFF" />
                             </TouchableOpacity>
                         )}
                          {developer.socials?.website && (
-                            <TouchableOpacity onPress={() => Linking.openURL(developer.socials.website)} style={{ padding: 8, backgroundColor: '#0EA5E9', borderRadius: 20 }}>
+                            <TouchableOpacity onPress={() => openAppUrl(developer.socials.website)} style={{ padding: 8, backgroundColor: '#0EA5E9', borderRadius: 20 }}>
                                 <Ionicons name="globe-outline" size={16} color="#FFF" />
                             </TouchableOpacity>
                         )}
@@ -315,7 +316,7 @@ export default function SettingsScreen() {
                                 onPress={() => {
                                     const email = developer.socials?.email;
                                     if (email) {
-                                        Linking.openURL(email.startsWith('mailto:') ? email : `mailto:${email}`);
+                                        openAppUrl(email.startsWith('mailto:') ? email : `mailto:${email}`);
                                     }
                                 }} 
                                 style={{ padding: 8, backgroundColor: '#EA4335', borderRadius: 20 }}
@@ -329,7 +330,7 @@ export default function SettingsScreen() {
         </View>
       )}
 
-      <Text style={[styles.version, { color: theme.icon }]}>VU Time v1.0.6 by Anirban_Islam</Text>
+      <Text style={[styles.version, { color: theme.icon }]}>VU Time v1.0.8 by Anirban_Islam</Text>
       <View style={{ height: 40 }} />
 
       {/* Logout Confirmation Modal */}

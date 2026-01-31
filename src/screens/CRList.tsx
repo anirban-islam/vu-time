@@ -19,6 +19,7 @@ import { auth } from '../services/api';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 
 const { width } = Dimensions.get('window');
+import { handleCall, handleWhatsApp } from '../utils/linking';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CRListScreen() {
@@ -124,15 +125,7 @@ export default function CRListScreen() {
         setFilteredCrs(filtered);
     }, [selectedSemester, selectedSection, allCrs]);
 
-    const handleCall = (number: string) => {
-        if (number) Linking.openURL(`tel:${number}`);
-    };
 
-    const handleWhatsApp = (number: string) => {
-        if (!number) return;
-        let formatted = number.startsWith('+') ? number : '+880' + number.replace(/^0+/, ''); 
-        Linking.openURL(`whatsapp://send?phone=${formatted}`);
-    };
 
     const renderCRItem = (item: any, index: number) => (
         <Animated.View 

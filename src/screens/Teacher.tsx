@@ -6,6 +6,7 @@ import { useTheme } from '../context/ThemeContext';
 import TeacherCard from '../components/TeacherCard';
 import { auth } from '../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { handleCall as handleCallUtil, openAppUrl } from '../utils/linking';
 
 interface Teacher {
   id: string;
@@ -26,6 +27,9 @@ export default function TeacherScreen() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [selectedTeacher, setSelectedTeacher] = useState<Teacher | null>(null);
+
+  const handleCall = (number: string) => handleCallUtil(number);
+  const handleEmail = (email: string) => openAppUrl(`mailto:${email}`);
 
   useEffect(() => {
     loadCachedTeachers();
@@ -64,13 +68,6 @@ export default function TeacherScreen() {
     teacher.designation.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleCall = (number: string) => {
-    Linking.openURL(`tel:${number}`);
-  };
-
-  const handleEmail = (email: string) => {
-    Linking.openURL(`mailto:${email}`);
-  };
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>

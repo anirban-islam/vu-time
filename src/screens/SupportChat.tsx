@@ -12,10 +12,10 @@ import {
   SafeAreaView,
   StatusBar
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { auth } from '../services/api';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../context/AuthContext';
 
 type Message = {
     _id: string;
@@ -26,39 +26,26 @@ type Message = {
 };
 
 export default function SupportChat() {
+    const { token, user: currentUser } = useAuth();
     const navigation = useNavigation();
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputText, setInputText] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [sending, setSending] = useState(false);
-    const [userId, setUserId] = useState<string | null>(null);
+    const [userId, setUserId] = useState<string | null>(currentUser?.id || null);
     const flatListRef = useRef<FlatList>(null);
 
     useEffect(() => {
-        loadUser();
-    }, []);
-
-    const loadUser = async () => {
-        try {
-            const token = await AsyncStorage.getItem('userToken'); 
-            if (!token) return;
-            
-            const res = await auth.getProfile(token);
-            if (res.data.success) {
-                setUserId(res.data.user.id);
-                fetchMessages();
-                const interval = setInterval(fetchMessages, 5000);
-                return () => clearInterval(interval);
-            }
-        } catch (error) {
-            console.log('Error loading user', error);
+        if (token) {
+            fetchMessages();
+            const interval = setInterval(fetchMessages, 5000);
+            return () => clearInterval(interval);
         }
-    };
+    }, [token]);
 
     const fetchMessages = async () => {
+        if (!token) return;
         try {
-            const token = await AsyncStorage.getItem('userToken');
-            if (!token) return;
             const res = await auth.getMessages(token);
             if (res.data.success) {
                 setMessages(res.data.messages);
@@ -71,11 +58,9 @@ export default function SupportChat() {
     };
 
     const sendMessage = async () => {
-        if (!inputText.trim()) return;
+        if (!inputText.trim() || !token) return;
         setSending(true);
         try {
-            const token = await AsyncStorage.getItem('userToken');
-            if (!token) return;
             const res = await auth.sendMessage(token, inputText);
             
             if (res.data.success) {

@@ -2,7 +2,7 @@
   "expo": {
     "name": "VU Time",
     "slug": "vu-time",
-    "version": "1.0.6",
+    "version": "1.0.9",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
     "scheme": "vutime",
@@ -13,7 +13,7 @@
     },
     "android": {
       "package": "com.anirbanislam.vutime",
-      "versionCode": 6,
+      "versionCode": 9,
       "adaptiveIcon": {
         "backgroundColor": "#00000000",
         "foregroundImage": "./assets/images/logo_transparent.png",
