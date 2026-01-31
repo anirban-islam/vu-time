@@ -323,9 +323,14 @@ export default function HomeScreen() {
                         <Text style={[styles.mainName, { color: theme.text }]}>{user?.name?.split(' ')[0]}</Text>
                     </View>
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('Settings' as any)} style={[styles.headerActionBtn, { borderColor: theme.border }]}>
-                    <Ionicons name="cog-outline" size={22} color={theme.text} />
-                </TouchableOpacity>
+                <View style={{ flexDirection: 'row', gap: 10 }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('SupportChat' as any)} style={[styles.headerActionBtn, { borderColor: theme.border }]}>
+                        <Ionicons name="chatbubble-ellipses-outline" size={20} color={theme.text} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Settings' as any)} style={[styles.headerActionBtn, { borderColor: theme.border }]}>
+                        <Ionicons name="cog-outline" size={22} color={theme.text} />
+                    </TouchableOpacity>
+                </View>
             </View>
             
             <View style={styles.headerBadges}>

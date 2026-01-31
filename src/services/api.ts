@@ -65,6 +65,10 @@ export const auth = {
     deleteNotice: (token: string, id: string) => api.delete(`/notices/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
     updateNotice: (token: string, id: string, data: any) => api.put(`/notices/${id}`, data, { headers: { Authorization: `Bearer ${token}` } }),
     
+    // Messaging
+    getMessages: (token: string) => api.get('/messages', { headers: { Authorization: `Bearer ${token}` } }),
+    sendMessage: (token: string, content: string) => api.post('/messages', { content }, { headers: { Authorization: `Bearer ${token}` } }),
+
     // Banners
     getBanners: () => api.get('/banners'),
     createBanner: (token: string, formData: FormData) => api.post('/banners', formData, {

@@ -14,6 +14,7 @@ import SettingsScreen from '../screens/Settings';
 import ProfileDetailsScreen from '../screens/ProfileDetails';
 import ManageResourcesScreen from '../screens/ManageResources';
 import AdminDashboardScreen from '../screens/AdminDashboard';
+import SupportChatScreen from '../screens/SupportChat';
 import { Colors } from '../../constants/theme';
 import { useTheme } from '../context/ThemeContext';
 import { Platform } from 'react-native';
@@ -176,6 +177,11 @@ export default function MainStack() {
             headerTintColor: theme.text,
             headerShadowVisible: false,
           }}
+        />
+        <Stack.Screen 
+          name="SupportChat" 
+          component={SupportChatScreen}
+          options={{ headerShown: false }} 
         />
       </Stack.Navigator>
     );
