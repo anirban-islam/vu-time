@@ -167,6 +167,20 @@ export default function AdminDashboardScreen() {
                     </View>
                     <Ionicons name="chevron-forward" size={20} color={theme.icon} />
                 </TouchableOpacity>
+
+                <TouchableOpacity 
+                    style={[styles.actionButton, { backgroundColor: theme.background, borderColor: theme.border, marginTop: 12 }]}
+                    onPress={() => (navigation as any).navigate('SupportAdmin')}
+                >
+                    <View style={[styles.iconBox, { backgroundColor: '#0284C720' }]}>
+                        <Ionicons name="chatbubbles" size={24} color="#0284C7" />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                        <Text style={[styles.actionTitle, { color: theme.text }]}>Support Inquiries</Text>
+                        <Text style={{ color: theme.icon, fontSize: 12 }}>Reply to student help requests</Text>
+                    </View>
+                    <Ionicons name="chevron-forward" size={20} color={theme.icon} />
+                </TouchableOpacity>
             </View>
 
             {/* Banner Management */}

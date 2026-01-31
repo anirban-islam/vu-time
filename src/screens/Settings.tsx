@@ -330,7 +330,7 @@ export default function SettingsScreen() {
         </View>
       )}
 
-      <Text style={[styles.version, { color: theme.icon }]}>VU Time v1.0.8 by Anirban_Islam</Text>
+      <Text style={[styles.version, { color: theme.icon }]}>VU Time v1.1.3 by Anirban_Islam</Text>
       <View style={{ height: 40 }} />
 
       {/* Logout Confirmation Modal */}

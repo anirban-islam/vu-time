@@ -1,7 +1,12 @@
 import axios from 'axios';
 
-// Use physical IP for device testing
+// Use physical IP for device testing if running locally (e.g., http://192.168.1.5:3001/api)
+// const BASE_URL = 'http://192.168.x.x:3001/api'; 
 const BASE_URL = 'https://vutime-backend.vercel.app/api';
+// const BASE_URL = 'http://localhost:3000/api'; // Localhost only works on Simulator/Emulator
+//const BASE_URL = 'http://192.168.0.215:3001/api'; // Use LAN IP for Physical Devices
+
+// NOTE: If your Support Messages are not appearing in the Admin Dashboard, ensure both are connected to the SAME backend (Production vs Local).
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -67,7 +72,7 @@ export const auth = {
     
     // Messaging
     getMessages: (token: string) => api.get('/messages', { headers: { Authorization: `Bearer ${token}` } }),
-    sendMessage: (token: string, content: string) => api.post('/messages', { content }, { headers: { Authorization: `Bearer ${token}` } }),
+    sendMessage: (token: string, content: string, receiverId?: string | null) => api.post('/messages', { content, receiverId }, { headers: { Authorization: `Bearer ${token}` } }),
 
     // Banners
     getBanners: () => api.get('/banners'),

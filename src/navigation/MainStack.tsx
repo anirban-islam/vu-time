@@ -183,6 +183,11 @@ export default function MainStack() {
           component={SupportChatScreen}
           options={{ headerShown: false }} 
         />
+        <Stack.Screen 
+          name="SupportAdmin" 
+          component={require('../screens/SupportAdmin').default}
+          options={{ headerShown: false }} 
+        />
       </Stack.Navigator>
     );
 }
