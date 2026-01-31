@@ -16,6 +16,13 @@ export const Colors = {
     icon: '#687076',
     tabIconDefault: '#687076',
     tabIconSelected: tintColorLight,
+    primary: '#f58d37',
+    secondary: '#f97316',
+    border: '#E2E8F0',
+    inputBackground: '#F7FAFC',
+    inputPlaceholder: '#cbd5e0',
+    error: '#e53e3e',
+    surface: '#FFFFFF',
   },
   dark: {
     text: '#ECEDEE',
@@ -24,7 +31,36 @@ export const Colors = {
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
+    primary: '#f58d37',
+    secondary: '#ea580c',
+    border: '#2d3748',
+    inputBackground: '#1a202c',
+    inputPlaceholder: '#718096',
+    error: '#fc8181',
+    surface: '#1E1E1E',
   },
+};
+
+export const Spacing = {
+  xs: 4,
+  s: 8,
+  m: 12,
+  l: 16,
+  xl: 20,
+  xxl: 24,
+  xxxl: 32,
+  pagePadding: 16, // Standard global padding
+};
+
+export const Layout = {
+  radius: {
+    s: 8,
+    m: 12,
+    l: 16,
+    xl: 20,
+    round: 999,
+  },
+  touchableHeight: 48,
 };
 
 export const Fonts = Platform.select({
